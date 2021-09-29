@@ -3,7 +3,6 @@ const app = express();
 
 app.use(express.json());
 
-
 const notes = require("./data/notes-data");
 
 app.get("/notes/:noteId", (req, res, next) => {
@@ -25,7 +24,7 @@ let lastNoteId = notes.reduce((maxId, note) => Math.max(maxId, note.id), 0);
 
 // TODO: Add ability to create a new note
 app.post("/notes", (req, res, next) => {
-  const { data: { text } = {} } = req.body;
+  const { text } = req.body;
   if (text) {
     const newNote = {
       id: ++lastNoteId,
