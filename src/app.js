@@ -24,7 +24,7 @@ let lastNoteId = notes.reduce((maxId, note) => Math.max(maxId, note.id), 0);
 
 // TODO: Add ability to create a new note
 app.post("/notes", (req, res, next) => {
-  const { text } = req.body;
+  const { data: { text } = {} } = req.body;
   if (text) {
     const newNote = {
       id: ++lastNoteId,
