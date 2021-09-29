@@ -8,10 +8,10 @@ const notes = require("./data/notes-data");
 app.get("/notes/:noteId", (req, res, next) => {
   const noteId = Number(req.params.noteId);
   const foundNote = notes.find((note) => note.id === noteId);
-  if (foundNote === undefined) {
-    next(`Note id not found: ${req.params.noteId}`);
-  } else {
+  if (foundNote) {
     res.json({ data: foundNote });
+  } else {
+    next(`Note id not found: ${req.params.noteId}`);
   }
   
 });
